@@ -63,3 +63,10 @@ Only `count_less` is provided. Other relations follow on the caller's side:
 - The comparison value `x` does not need to be the same type as the stored
   values, only comparable to them. Comparing incompatible types raises
   `TypeError` from the underlying comparison, which is allowed to propagate.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
